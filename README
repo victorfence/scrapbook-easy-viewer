@@ -1,0 +1,8 @@
+Small tool helps People who have thouble reading scrapbook content after updated to Firefox Quantum.
+This is just a reader, does not modify any of your record.
+
+* Install:
+Just download files into your scrapbook data directory.
+
+* Run:
+Open read.html with firefox. That's all.
