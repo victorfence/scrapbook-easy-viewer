@@ -70,7 +70,7 @@ xmlhttp.onload = function() {
     var xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
     var x=xmlDoc.getElementsByTagName("RDF:Seq");
     var root_seq = getSeqNode(xmlDoc, "urn:scrapbook:root");
-    function show_desc(seq, level, $container){
+    function show_seq(seq, level, $container){
         var about = seq.getAttribute("RDF:about")
         if(about){
             var desc_node = getDescNode(xmlDoc, about);
@@ -133,7 +133,7 @@ xmlhttp.onload = function() {
             var separator = getDecSeparator(xmlDoc, child.getAttribute("RDF:resource"));
             if(seq_node){ // folder
                 var id = seq_node.getAttribute("RDF:about").replace("urn:scrapbook:item", "");
-                show_desc(seq_node, level + 1, $container);
+                show_seq(seq_node, level + 1, $container);
             }else if(separator){
                 show_separator(separator)
             }else{ // child
@@ -141,7 +141,7 @@ xmlhttp.onload = function() {
             }
         }
     }
-    show_desc(root_seq, 0, $(".box"));
+    show_seq(root_seq, 0, $(".box"));
 }
 xmlhttp.open("GET", "scrapbook.rdf", false);
 xmlhttp.send();
