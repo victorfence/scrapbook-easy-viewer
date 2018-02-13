@@ -88,8 +88,8 @@ xmlhttp.onload = function() {
                     }
                     $(this).nextAll("div").toggle();
                 });
-                // if(level>1)
-                //     $item.hide();
+                if(level>1)
+                    $item.hide();
                 $container = $item;
             }else {
                 // this is root
