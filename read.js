@@ -88,8 +88,8 @@ xmlhttp.onload = function() {
                     }
                     $(this).nextAll("div").toggle();
                 });
-                if(level>1)
-                    $item.hide();
+                // if(level>1)
+                //     $item.hide();
                 $container = $item;
             }else {
                 // this is root
@@ -98,20 +98,30 @@ xmlhttp.onload = function() {
         function show_link(desc_node){
             if(desc_node){
                 var id = desc_node.getAttribute("NS1:id");
-                var type = desc_node.getAttribute("NS1:type") || "link";
+                var type = desc_node.getAttribute("NS1:type") || "local";
                 var source = desc_node.getAttribute("NS1:source");
+                var $con = $("<div></div>").appendTo($container);
                 var $item = $("<div class='item {class}'>{title}</div>".fillData(
                     {"class": type,
                      "title": desc_node.getAttribute("NS1:title")})
-                             ).appendTo($container).css("margin-left", (level) * 20 + "px")
-                if(level > 0)$item.hide();
+                             ).appendTo($con).css("margin-left", (level) * 20 + "px")
+                
+                if(level > 0) $con.hide();
+                
                 $item.click(function(){
-                    if(type == "link"){
+                    if(type == "local"){
                         window.open("data/"+id+"/index.html", "_blank")
                     }else if(type == "bookmark"){
-                        window.open(source, "_blank")
+                        window.open(source, "_blank");
                     }
                 });
+                if(type == "local"){
+                    var $origin = $("<div class='item {class} origin'>origin</div>".fillData(
+                        {"class": type})).appendTo($con);
+                    $origin.click(function(){
+                        window.open(source, "_blank");
+                    });
+                }
             }
         }
         function show_separator(desc_node){
