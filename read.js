@@ -44,8 +44,10 @@ String.prototype.htmlEncode = function(value) {
 }
 var xmlhttp=new XMLHttpRequest();
 function nsResolver(prefix) {
+    var m = prefix.match(/NS\d*/);
+    if(m)
+        return 'http://amb.vis.ne.jp/mozilla/scrapbook-rdf#';
     var ns = {
-        'NS1' :'http://amb.vis.ne.jp/mozilla/scrapbook-rdf#',
         'NC': 'http://home.netscape.com/NC-rdf#',
         'RDF': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
     };
